@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{409DA1E7-DC6D-4B00-858F-0ABF1593AE3C}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HelloWorld/ICommand.cs">
+    <Files>
+      <File FileName="HelloWorld/Main.cs" Line="36" Column="3" />
+      <File FileName="HelloWorld/ICommand.cs" Line="38" Column="15" />
+      <File FileName="HelloWorldAddin/HelloCommand.cs" Line="48" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HelloWorld" expanded="True">
+            <Node name="HelloWorld" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="ICommand.cs" selected="True" />
+            </Node>
+            <Node name="HelloWorldAddin" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.HelloWorld PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+</Properties>

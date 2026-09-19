@@ -44,7 +44,13 @@ namespace Mono.Addins.Database
 			} catch (Exception ex) {
 				throw new ProcessFailedException (remMonitor.ProgessLog, ex);
 			} finally {
+				#if NETFRAMEWORK
 				System.Runtime.Remoting.RemotingServices.Disconnect (remMonitor);
+				#endif
+				// On .NET Core the scan runs in-process (RemoteSetupDomain is a plain local object),
+				// so the flag set by RemoteSetupDomain.Scan must be cleared here in the main domain;
+				// otherwise it would block host/root addin activation (CheckHostAssembly) afterwards.
+				AddinDatabase.RunningSetupProcess = false;
 				ReleaseDomain ();
 			}
 		}
@@ -58,7 +64,10 @@ namespace Mono.Addins.Database
 			} catch (Exception ex) {
 				throw new ProcessFailedException (remMonitor.ProgessLog, ex);
 			} finally {
+				#if NETFRAMEWORK
 				System.Runtime.Remoting.RemotingServices.Disconnect (remMonitor);
+				#endif
+				AddinDatabase.RunningSetupProcess = false;
 				ReleaseDomain ();
 			}
 		}
@@ -72,7 +81,10 @@ namespace Mono.Addins.Database
 			} catch (Exception ex) {
 				throw new ProcessFailedException (remMonitor.ProgessLog, ex);
 			} finally {
+				#if NETFRAMEWORK
 				System.Runtime.Remoting.RemotingServices.Disconnect (remMonitor);
+				#endif
+				AddinDatabase.RunningSetupProcess = false;
 				ReleaseDomain ();
 			}
 		}
@@ -89,10 +101,14 @@ namespace Mono.Addins.Database
 		{
 			lock (this) {
 				if (useCount++ == 0) {
+					#if NETFRAMEWORK
 					AppDomain.CurrentDomain.AssemblyResolve += MonoAddinsAssemblyResolve;
 					domain = AppDomain.CreateDomain ("SetupDomain", null, AppDomain.CurrentDomain.SetupInformation);
 					var type = typeof(RemoteSetupDomain);
 					remoteSetupDomain = (RemoteSetupDomain) domain.CreateInstanceFromAndUnwrap (type.Assembly.Location, type.FullName);
+					#else
+					remoteSetupDomain = new RemoteSetupDomain ();
+					#endif
 				}
 				return remoteSetupDomain;
 			}
@@ -102,10 +118,12 @@ namespace Mono.Addins.Database
 		{
 			lock (this) {
 				if (--useCount == 0) {
+					#if NETFRAMEWORK
 					AppDomain.Unload (domain);
 					domain = null;
-					remoteSetupDomain = null;
 					AppDomain.CurrentDomain.AssemblyResolve -= MonoAddinsAssemblyResolve;
+					#endif
+					remoteSetupDomain = null;
 				}
 			}
 		}

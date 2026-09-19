@@ -72,6 +72,25 @@ namespace Mono.Addins.Database
 			string asm = null;
 			try {
 				asm = CreateHostExe ();
+				if (asm == null) {
+					var input = new StringBuilder ();
+					input.AppendLine (registryPath);
+					input.AppendLine (startupDir);
+					input.AppendLine (addinsDir);
+					input.AppendLine (databaseDir);
+					if (data != null) {
+						foreach (var d in data)
+							input.AppendLine (d);
+					}
+					var originalIn = Console.In;
+					Console.SetIn (new StringReader (input.ToString ())); 
+					try {
+						Main (new [] { verboseParam, name, arg1 });
+					} finally {
+						Console.SetIn (originalIn);
+					}
+					return;
+				}
 				if (!Util.IsMono)
 					process.StartInfo = new ProcessStartInfo (asm, sb.ToString ());
 				else {
@@ -91,13 +110,13 @@ namespace Mono.Addins.Database
 				process.StandardInput.WriteLine (startupDir);
 				process.StandardInput.WriteLine (addinsDir);
 				process.StandardInput.WriteLine (databaseDir);
-
+			
 				if (data != null) {
 					foreach (var d in data)
 						process.StandardInput.WriteLine (d);
 				}
 				process.StandardInput.Flush ();
-	
+		
 				StringCollection progessLog = new StringCollection ();
 				ProcessProgressStatus.MonitorProcessStatus (monitor, process.StandardOutput, progessLog);
 				process.WaitForExit ();
@@ -160,6 +179,7 @@ namespace Mono.Addins.Database
 		
 		static string CreateHostExe ()
 		{
+			#if NETFRAMEWORK
 			string file;
 			string id;
 			string fullFile;
@@ -191,6 +211,9 @@ namespace Mono.Addins.Database
 			ab.SetEntryPoint (fb, PEFileKinds.WindowApplication);
 			ab.Save (file);
 			return fullFile;
+			#else
+			return null;
+			#endif
 		}
 	}
 	

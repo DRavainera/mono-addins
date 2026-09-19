@@ -1,0 +1,29 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="AttributeExtensions.cs">
+    <Files>
+      <File FileName="AttributeExtensions.cs" Line="1" Column="1" />
+      <File FileName="HelloSampleExtender.cs" Line="1" Column="1" />
+      <File FileName="HelloWorldWriter.cs" Line="1" Column="1" />
+      <File FileName="HelloWriterWithCondition.cs" Line="34" Column="3" />
+      <File FileName="HelloWriterWithMetadata.cs" Line="27" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HelloWorldExtension" expanded="True">
+            <Node name="HelloWorldExtension" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="AttributeExtensions.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
