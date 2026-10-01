@@ -37,3 +37,4 @@ Makefile.in
 /configure
 /install-sh
 /missing
+*/bin/
