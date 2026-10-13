@@ -1,64 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-  <Import Project="..\TargetFrameworks.props" />
-  <Import Project="..\Version.props" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42D1CE65-A14B-4218-B787-58AD7AA68513}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFrameworks>net472;net10.0</TargetFrameworks>
     <AssemblyName>Mono.Addins.CecilReflector</AssemblyName>
     <RootNamespace>Mono.Addins.CecilReflector</RootNamespace>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\mono-addins.snk</AssemblyOriginatorKeyFile>
-    <PublicSign>True</PublicSign>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <PackageId>Mono.Addins.CecilReflector</PackageId>
-    <Description>Mono.Addins is a framework for creating extensible applications, and for creating add-ins which extend applications. Mono.Addins.Setup provides an API for managing add-ins, creating add-in packages and publishing add-ins in on-line repositories.</Description>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == '' and '$(OS)' != 'Windows_NT'">$(HOME)/.nuget/packages/</NuGetPackageRoot>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <SignAssembly>false</SignAssembly>
+    <NoWarn>$(NoWarn);1591;1574</NoWarn>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputPath>bin\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin</OutputPath>
-    <DefineConstants>READ_ONLY</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <ConsolePause>False</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>..\bin</OutputPath>
-    <DefineConstants>READ_ONLY</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <ConsolePause>False</ConsolePause>
-    <DebugSymbols>true</DebugSymbols>
-    <PackOnBuild>True</PackOnBuild>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Mono.Cecil">
-      <HintPath>$(NuGetPackageRoot)mono.cecil/0.10.1/lib/net40/Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib">
-      <HintPath>$(NuGetPackageRoot)microsoft.netframework.referenceassemblies.net472/1.0.3/build/.NETFramework/v4.7.2/mscorlib.dll</HintPath>
-    </Reference>
-    <ProjectReference Include="..\Mono.Addins\Mono.Addins.csproj">
-      <Project>{91DD5A2D-9FE3-4C3C-9253-876141874DAD}</Project>
-      <Name>Mono.Addins</Name>
-    </ProjectReference>
+    <!-- 2026-10-12: Mono.Cecil 0.11.6 (netstandard2.0, primera clase en .NET 10) en
+         lugar del 0.10.1 net40 vendurado en la cache (binario de 2018). Es la linea
+         0.11 continua no-rompida de la 0.10 y es la version contra la que se
+         estagia main/build/ para que el runtime y el build usen la misma. -->
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+    <ProjectReference Include="..\Mono.Addins\Mono.Addins.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Mono.Addins.CecilReflector\Reflector.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
