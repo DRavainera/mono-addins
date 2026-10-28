@@ -31,7 +31,7 @@ namespace Mono.Addins.Gui
 				global::Gtk.Icon.SizeLookup(size, out sz, out sy);
 				try
 				{
-					return Gtk.IconTheme.Default.LoadIcon(name, sz, 0);
+					return Gtk.IconTheme.GetForScreen(Gdk.Screen.Default).LoadIcon(name, sz, 0);
 				}
 				catch (System.Exception)
 				{
@@ -41,24 +41,33 @@ namespace Mono.Addins.Gui
 					}
 					else
 					{
-						Gdk.Pixmap pmap = new Gdk.Pixmap(Gdk.Screen.Default.RootWindow, sz, sz);
-						Gdk.GC gc = new Gdk.GC(pmap);
-						gc.RgbFgColor = new Gdk.Color(255, 255, 255);
-						pmap.DrawRectangle(gc, true, 0, 0, sz, sz);
-						gc.RgbFgColor = new Gdk.Color(0, 0, 0);
-						pmap.DrawRectangle(gc, false, 0, 0, (sz - 1), (sz - 1));
-						gc.SetLineAttributes(3, Gdk.LineStyle.Solid, Gdk.CapStyle.Round, Gdk.JoinStyle.Round);
-						gc.RgbFgColor = new Gdk.Color(255, 0, 0);
-						pmap.DrawLine(gc, (sz / 4), (sz / 4), ((sz - 1)
-										- (sz / 4)), ((sz - 1)
-										- (sz / 4)));
-						pmap.DrawLine(gc, ((sz - 1)
-										- (sz / 4)), (sz / 4), (sz / 4), ((sz - 1)
-										- (sz / 4)));
-						return Gdk.Pixbuf.FromDrawable(pmap, pmap.Colormap, 0, 0, 0, 0, sz, sz);
+						return IconLoader.CreateMissingImage(sz);
 					}
 				}
 			}
+		}
+
+		static Gdk.Pixbuf CreateMissingImage(int sz)
+		{
+			var surface = new Cairo.ImageSurface(Cairo.Format.Argb32, sz, sz);
+			using (var cr = new Cairo.Context(surface)) {
+				cr.SetSourceColor(new Cairo.Color(1, 1, 1));
+				cr.Rectangle(0, 0, sz, sz);
+				cr.Fill();
+				cr.SetSourceColor(new Cairo.Color(0, 0, 0));
+				cr.LineWidth = 1;
+				cr.Rectangle(0.5, 0.5, sz - 1, sz - 1);
+				cr.Stroke();
+				cr.SetSourceColor(new Cairo.Color(1, 0, 0));
+				cr.MoveTo(sz / 4.0, sz / 4.0);
+				cr.LineTo(sz - sz / 4.0 - 1.0, sz - sz / 4.0 - 1.0);
+				cr.MoveTo(sz - sz / 4.0 - 1.0, sz / 4.0);
+				cr.LineTo(sz / 4.0, sz - sz / 4.0 - 1.0);
+				cr.Stroke();
+			}
+			var pixbuf = new Gdk.Pixbuf(surface, 0, 0, sz, sz);
+			surface.Dispose();
+			return pixbuf;
 		}
 	}
 
@@ -71,25 +80,16 @@ namespace Mono.Addins.Gui
 		public static BinContainer Attach(Gtk.Bin bin)
 		{
 			BinContainer bc = new BinContainer();
-			bin.SizeRequested += new Gtk.SizeRequestedHandler(bc.OnSizeRequested);
 			bin.SizeAllocated += new Gtk.SizeAllocatedHandler(bc.OnSizeAllocated);
 			bin.Added += new Gtk.AddedHandler(bc.OnAdded);
 			return bc;
-		}
-
-		private void OnSizeRequested(object sender, Gtk.SizeRequestedArgs args)
-		{
-			if ((this.child != null))
-			{
-				args.Requisition = this.child.SizeRequest();
-			}
 		}
 
 		private void OnSizeAllocated(object sender, Gtk.SizeAllocatedArgs args)
 		{
 			if ((this.child != null))
 			{
-				this.child.Allocation = args.Allocation;
+				this.child.SetAllocation(args.Allocation);
 			}
 		}
 

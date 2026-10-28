@@ -31,7 +31,7 @@ namespace Mono.Addins.Gui
 			this.BorderWidth = ((uint)(6));
 			this.DefaultWidth = 550;
 			// Internal child Mono.Addins.Gui.NewSiteDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog-vbox11";
 			w1.Spacing = 6;
 			w1.BorderWidth = ((uint)(2));
@@ -57,7 +57,7 @@ namespace Mono.Addins.Gui
 			this.btnOnlineRep.Active = true;
 			this.btnOnlineRep.DrawIndicator = true;
 			this.btnOnlineRep.UseUnderline = true;
-			this.btnOnlineRep.Group = new global::GLib.SList (global::System.IntPtr.Zero);
+			this.btnOnlineRep.Group = new global::Gtk.RadioButton [0];
 			this.vbox89.Add (this.btnOnlineRep);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox89 [this.btnOnlineRep]));
 			w3.Position = 1;
@@ -169,7 +169,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox89]));
 			w15.Position = 0;
 			// Internal child Mono.Addins.Gui.NewSiteDialog.ActionArea
-			global::Gtk.HButtonBox w16 = this.ActionArea;
+			global::Gtk.ButtonBox w16 = this.ActionArea;
 			w16.Name = "dialog-action_area11";
 			w16.Spacing = 10;
 			w16.BorderWidth = ((uint)(5));

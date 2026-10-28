@@ -22,7 +22,7 @@ namespace Mono.Addins.Gui
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(6));
 			// Internal child Mono.Addins.Gui.AddinInstallerDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog1_VBox";
 			w1.Spacing = 6;
 			w1.BorderWidth = ((uint)(2));
@@ -85,7 +85,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
 			w9.Position = 0;
 			// Internal child Mono.Addins.Gui.AddinInstallerDialog.ActionArea
-			global::Gtk.HButtonBox w10 = this.ActionArea;
+			global::Gtk.ButtonBox w10 = this.ActionArea;
 			w10.Name = "dialog1_ActionArea";
 			w10.Spacing = 10;
 			w10.BorderWidth = ((uint)(6));

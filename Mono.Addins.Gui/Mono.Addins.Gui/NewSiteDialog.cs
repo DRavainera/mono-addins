@@ -43,9 +43,9 @@ namespace Mono.Addins.Gui
 			CheckValues ();
 		}
 		
-		public override void Dispose ()
+		protected override void Dispose (bool disposing)
 		{
-			base.Dispose ();
+			base.Dispose (disposing);
 			Destroy ();
 		}
 		

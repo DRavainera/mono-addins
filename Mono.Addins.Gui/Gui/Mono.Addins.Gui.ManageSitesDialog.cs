@@ -23,7 +23,7 @@ namespace Mono.Addins.Gui
 			this.DefaultWidth = 600;
 			this.DefaultHeight = 300;
 			// Internal child Mono.Addins.Gui.ManageSitesDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog-vbox10";
 			w1.Spacing = 6;
 			// Container child dialog-vbox10.Gtk.Box+BoxChild
@@ -82,7 +82,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(w1 [this.hbox67]));
 			w7.Position = 0;
 			// Internal child Mono.Addins.Gui.ManageSitesDialog.ActionArea
-			global::Gtk.HButtonBox w8 = this.ActionArea;
+			global::Gtk.ButtonBox w8 = this.ActionArea;
 			w8.Name = "dialog-action_area10";
 			w8.Spacing = 10;
 			w8.BorderWidth = ((uint)(6));

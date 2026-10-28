@@ -71,7 +71,6 @@ namespace Mono.Addins.Gui
 			this.service = service;
 			Build ();
 			TransientFor = parent;
-			HasSeparator = false;
 			Services.PlaceDialog (this, parent);
 			
 			addininfoInstalled.Init (service);
@@ -100,7 +99,7 @@ namespace Mono.Addins.Gui
 			CellRendererText crt = new CellRendererText ();
 			repoCombo.PackStart (crt, true);
 			repoCombo.AddAttribute (crt, "text", 0);
-			repoCombo.RowSeparatorFunc = delegate(TreeModel model, TreeIter iter) {
+			repoCombo.RowSeparatorFunc = delegate(ITreeModel model, TreeIter iter) {
 				string val = (string) model.GetValue (iter, 0);
 				return val == "---";
 			};
@@ -165,7 +164,7 @@ namespace Mono.Addins.Gui
 			filterEntry.SizeAllocated += (o, args) => {
 				RepositionFilter ();
 			};
-			ActionArea.PackEnd (filterEntry);
+			ActionArea.PackEnd (filterEntry, false, false, 0);
 			var btnCloseBoxChild = ((Box.BoxChild)(ActionArea [btnClose]));
 			btnCloseBoxChild.Position = 2;
 			filterEntry.Show ();
@@ -189,12 +188,12 @@ namespace Mono.Addins.Gui
 			int w = filterEntry.SizeRequest ().Width;
 			int h = filterEntry.SizeRequest ().Height;
 			var alloc = notebook.Allocation;
-			filterEntry.Allocation = new Gdk.Rectangle (alloc.Left + alloc.Width - 1 - w, alloc.Y, w, h);
+			filterEntry.SetAllocation (new Gdk.Rectangle (alloc.Left + alloc.Width - 1 - w, alloc.Y, w, h));
 		}
 		
-		public override void Dispose ()
+		protected override void Dispose (bool disposing)
 		{
-			base.Dispose ();
+			base.Dispose (disposing);
 			Destroy ();
 		}
 		

@@ -132,9 +132,11 @@ namespace Mono.Addins.Gui
 		void UpdateStyle (object o = null, StyleSetArgs args = null)
 		{
 			if (entry != null) {
-				ModifyBg (StateType.Normal, entry.Style.Base (StateType.Normal));
-				iconClean.ModifyBg (StateType.Normal, entry.Style.Base (StateType.Normal));
-				iconFind.ModifyBg (StateType.Normal, entry.Style.Base (StateType.Normal));
+				Gdk.RGBA c = entry.StyleContext.GetBackgroundColor (Gtk.StateFlags.Normal);
+				Gdk.Color baseColor = new Gdk.Color ((byte) (c.Red * 65535), (byte) (c.Green * 65535), (byte) (c.Blue * 65535));
+				ModifyBg (StateType.Normal, baseColor);
+				iconClean.ModifyBg (StateType.Normal, baseColor);
+				iconFind.ModifyBg (StateType.Normal, baseColor);
 			}
 		}
 

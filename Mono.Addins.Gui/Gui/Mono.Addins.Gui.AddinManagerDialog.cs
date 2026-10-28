@@ -53,7 +53,7 @@ namespace Mono.Addins.Gui
 			this.DefaultWidth = 700;
 			this.DefaultHeight = 550;
 			// Internal child Mono.Addins.Gui.AddinManagerDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog-vbox8";
 			w1.Spacing = 3;
 			w1.BorderWidth = ((uint)(2));
@@ -326,7 +326,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox93]));
 			w36.Position = 0;
 			// Internal child Mono.Addins.Gui.AddinManagerDialog.ActionArea
-			global::Gtk.HButtonBox w37 = this.ActionArea;
+			global::Gtk.ButtonBox w37 = this.ActionArea;
 			w37.Name = "dialog-action_area8";
 			w37.Spacing = 6;
 			w37.BorderWidth = ((uint)(5));

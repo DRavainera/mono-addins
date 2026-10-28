@@ -64,9 +64,9 @@ namespace Mono.Addins.Gui
 			btnRemove.Sensitive = false;
 		}
 
-		public override void Dispose ()
+		protected override void Dispose (bool disposing)
 		{
-			base.Dispose ();
+			base.Dispose (disposing);
 			Destroy ();
 		}
 		
@@ -141,7 +141,7 @@ namespace Mono.Addins.Gui
 		
 		protected void OnRemove (object sender, EventArgs e)
 		{
-			Gtk.TreeModel foo;
+			Gtk.ITreeModel foo;
 			Gtk.TreeIter iter;
 			if (!repoTree.Selection.GetSelected (out foo, out iter))
 				return;

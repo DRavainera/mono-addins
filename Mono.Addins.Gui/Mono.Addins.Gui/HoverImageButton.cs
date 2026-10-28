@@ -147,15 +147,15 @@ namespace Mono.Addins.Gui
             return base.OnButtonReleaseEvent(evnt);
         }
 
-        protected override bool OnExposeEvent(Gdk.EventExpose evnt)
+        protected override bool OnDrawn(Cairo.Context cr)
         {
-            base.OnExposeEvent(evnt);
-
-            PropagateExpose(Child, evnt);
+            base.OnDrawn(cr);
 
             if(HasFocus && draw_focus) {
-                Style.PaintFocus(Style, GdkWindow, StateType.Normal, evnt.Area, this, "button",
-                    0, 0, Allocation.Width, Allocation.Height);
+                cr.Rectangle(0.5, 0.5, Allocation.Width - 1, Allocation.Height - 1);
+                cr.LineWidth = 1;
+                cr.SetSourceColor(new Cairo.Color(0.2, 0.4, 0.9));
+                cr.Stroke();
             }
 
             return true;

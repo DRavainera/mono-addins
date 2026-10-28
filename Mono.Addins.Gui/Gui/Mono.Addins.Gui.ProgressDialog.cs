@@ -22,7 +22,7 @@ namespace Mono.Addins.Gui
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Modal = true;
 			// Internal child Mono.Addins.Gui.ProgressDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog1_VBox";
 			w1.BorderWidth = ((uint)(2));
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
@@ -73,7 +73,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox2]));
 			w7.Position = 0;
 			// Internal child Mono.Addins.Gui.ProgressDialog.ActionArea
-			global::Gtk.HButtonBox w8 = this.ActionArea;
+			global::Gtk.ButtonBox w8 = this.ActionArea;
 			w8.Name = "dialog1_ActionArea";
 			w8.Spacing = 6;
 			w8.BorderWidth = ((uint)(5));

@@ -24,7 +24,7 @@ namespace Mono.Addins.Gui
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.BorderWidth = ((uint)(6));
 			// Internal child Mono.Addins.Gui.ErrorDialog.VBox
-			global::Gtk.VBox w1 = this.VBox;
+			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog-vbox5";
 			w1.Spacing = 6;
 			// Container child dialog-vbox5.Gtk.Box+BoxChild
@@ -101,7 +101,7 @@ namespace Mono.Addins.Gui
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(w1 [this.hbox59]));
 			w9.Position = 0;
 			// Internal child Mono.Addins.Gui.ErrorDialog.ActionArea
-			global::Gtk.HButtonBox w10 = this.ActionArea;
+			global::Gtk.ButtonBox w10 = this.ActionArea;
 			w10.Name = "dialog-action_area5";
 			w10.Spacing = 10;
 			w10.BorderWidth = ((uint)(5));

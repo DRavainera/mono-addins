@@ -359,7 +359,7 @@ namespace Mono.Addins.Gui
 		protected override void OnRealized ()
 		{
 			base.OnRealized ();
-			HslColor gcol = ebox.Style.Background (Gtk.StateType.Normal);
+			HslColor gcol = NormalBg (ebox);
 			gcol.L -= 0.03;
 			ebox.ModifyBg (Gtk.StateType.Normal, gcol);
 			ebox2.ModifyBg (Gtk.StateType.Normal, gcol);
@@ -367,9 +367,15 @@ namespace Mono.Addins.Gui
 			SetComponentsBg ();
 		}
 		
+		static HslColor NormalBg (Gtk.Widget w)
+		{
+			Gdk.RGBA c = w.StyleContext.GetBackgroundColor (Gtk.StateFlags.Normal);
+			return new Gdk.Color ((byte) (c.Red * 65535), (byte) (c.Green * 65535), (byte) (c.Blue * 65535));
+		}
+		
 		void SetComponentsBg ()
 		{
-			HslColor gcol = ebox.Style.Background (Gtk.StateType.Normal);
+			HslColor gcol = NormalBg (ebox);
 			//gcol.L -= 0.03;
 			if (titleIcon != null)
 				titleIcon.ModifyBg (Gtk.StateType.Normal, gcol);
