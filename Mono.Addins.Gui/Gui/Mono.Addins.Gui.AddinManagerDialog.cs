@@ -98,6 +98,8 @@ namespace Mono.Addins.Gui
 			this.vbox6.Add (this.scrolledwindow13);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox6 [this.scrolledwindow13]));
 			w3.Position = 0;
+			w3.Expand = true;
+			w3.Fill = true;
 			this.hbox2.Add (this.vbox6);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
 			w4.Position = 0;
@@ -197,6 +199,8 @@ namespace Mono.Addins.Gui
 			this.vboxUpdates.Add (this.scrolledUpdates);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vboxUpdates [this.scrolledUpdates]));
 			w16.Position = 1;
+			w16.Expand = true;
+			w16.Fill = true;
 			this.boxUpdates.Add (this.vboxUpdates);
 			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.boxUpdates [this.vboxUpdates]));
 			w17.Position = 0;
@@ -287,6 +291,8 @@ namespace Mono.Addins.Gui
 			this.vboxGallery.Add (this.scrolledGallery);
 			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.vboxGallery [this.scrolledGallery]));
 			w28.Position = 1;
+			w28.Expand = true;
+			w28.Fill = true;
 			this.hbox8.Add (this.vboxGallery);
 			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vboxGallery]));
 			w29.Position = 0;
@@ -316,15 +322,24 @@ namespace Mono.Addins.Gui
 			this.hbox72.Add (this.notebook);
 			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.hbox72 [this.notebook]));
 			w33.Position = 0;
+			w33.Expand = true;
+			w33.Fill = true;
 			this.hbox65.Add (this.hbox72);
 			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.hbox65 [this.hbox72]));
 			w34.Position = 0;
+			w34.Expand = true;
+			w34.Fill = true;
 			this.vbox93.Add (this.hbox65);
 			global::Gtk.Box.BoxChild w35 = ((global::Gtk.Box.BoxChild)(this.vbox93 [this.hbox65]));
 			w35.Position = 0;
+			w35.Expand = true;
+			w35.Fill = true;
 			w1.Add (this.vbox93);
+			// Gtk2 repartia el espacio sobrante entre hijos sin expand; Gtk3 no lo hace.
 			global::Gtk.Box.BoxChild w36 = ((global::Gtk.Box.BoxChild)(w1 [this.vbox93]));
 			w36.Position = 0;
+			w36.Expand = true;
+			w36.Fill = true;
 			// Internal child Mono.Addins.Gui.AddinManagerDialog.ActionArea
 			global::Gtk.ButtonBox w37 = this.ActionArea;
 			w37.Name = "dialog-action_area8";
