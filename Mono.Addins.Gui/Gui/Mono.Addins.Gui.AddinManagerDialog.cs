@@ -50,8 +50,8 @@ namespace Mono.Addins.Gui
 			this.Title = global::Mono.Unix.Catalog.GetString ("Extension Manager");
 			this.TypeHint = ((global::Gdk.WindowTypeHint)(1));
 			this.BorderWidth = ((uint)(6));
-			this.DefaultWidth = 700;
-			this.DefaultHeight = 550;
+			this.DefaultWidth = 920;
+			this.DefaultHeight = 640;
 			// Internal child Mono.Addins.Gui.AddinManagerDialog.VBox
 			global::Gtk.Box w1 = this.ContentArea;
 			w1.Name = "dialog-vbox8";
@@ -103,6 +103,8 @@ namespace Mono.Addins.Gui
 			this.hbox2.Add (this.vbox6);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.vbox6]));
 			w4.Position = 0;
+			w4.Expand = true;
+			w4.Fill = true;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.eventbox2 = new global::Gtk.EventBox ();
 			this.eventbox2.Name = "eventbox2";
@@ -204,6 +206,8 @@ namespace Mono.Addins.Gui
 			this.boxUpdates.Add (this.vboxUpdates);
 			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.boxUpdates [this.vboxUpdates]));
 			w17.Position = 0;
+			w17.Expand = true;
+			w17.Fill = true;
 			// Container child boxUpdates.Gtk.Box+BoxChild
 			this.eventbox3 = new global::Gtk.EventBox ();
 			this.eventbox3.Name = "eventbox3";
@@ -296,6 +300,8 @@ namespace Mono.Addins.Gui
 			this.hbox8.Add (this.vboxGallery);
 			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hbox8 [this.vboxGallery]));
 			w29.Position = 0;
+			w29.Expand = true;
+			w29.Fill = true;
 			// Container child hbox8.Gtk.Box+BoxChild
 			this.eventbox1 = new global::Gtk.EventBox ();
 			this.eventbox1.Name = "eventbox1";
