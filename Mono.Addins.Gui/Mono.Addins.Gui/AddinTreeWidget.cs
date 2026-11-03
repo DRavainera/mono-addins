@@ -125,7 +125,7 @@ namespace Mono.Addins.Gui
 			col.PackStart (crtog, false);
 			
 			CellRendererPixbuf pr = new CellRendererPixbuf ();
-			pr.Ypad = 2;
+			pr.Ypad = 6;
 			col.PackStart (pr, false);
 			col.AddAttribute (pr, "pixbuf", ColImage);
 			col.AddAttribute (pr, "visible", ColShowImage);
@@ -134,7 +134,7 @@ namespace Mono.Addins.Gui
 			crt.Ellipsize = Pango.EllipsizeMode.None;
 			crt.WrapMode = Pango.WrapMode.Word;
 			crt.MaxWidthChars = 45;
-			crt.Ypad = 2;
+			crt.Ypad = 6;
 			col.PackStart (crt, true);
 			
 			col.AddAttribute (crt, "markup", ColName);
@@ -147,7 +147,7 @@ namespace Mono.Addins.Gui
 			col.Title = Catalog.GetString ("Version");
 			CellRendererText versionText = new CellRendererText ();
 			versionText.Ellipsize = Pango.EllipsizeMode.End;
-			versionText.Ypad = 2;
+			versionText.Ypad = 6;
 			col.PackStart (versionText, true);
 			col.AddAttribute (versionText, "markup", ColVersion);
 			versionColumn = col;

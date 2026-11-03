@@ -97,6 +97,7 @@ namespace Mono.Addins.Gui
 			repoStore = new ListStore (typeof(string), typeof(string));
 			repoCombo.Model = repoStore;
 			CellRendererText crt = new CellRendererText ();
+			crt.Ypad = 6;
 			repoCombo.PackStart (crt, true);
 			repoCombo.AddAttribute (crt, "text", 0);
 			repoCombo.RowSeparatorFunc = delegate(ITreeModel model, TreeIter iter) {
