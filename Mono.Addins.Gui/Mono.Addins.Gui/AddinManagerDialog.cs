@@ -160,18 +160,16 @@ namespace Mono.Addins.Gui
 		void InsertFilterEntry ()
 		{
 			filterEntry = new SearchEntry ();
-			filterEntry.Entry.SetSizeRequest (200, filterEntry.Entry.SizeRequest ().Height);
-			filterEntry.SizeAllocated += (o, args) => {
-				RepositionFilter ();
-			};
-			ActionArea.PackEnd (filterEntry, false, false, 0);
-			var btnCloseBoxChild = ((Box.BoxChild)(ActionArea [btnClose]));
-			btnCloseBoxChild.Position = 2;
-			filterEntry.Show ();
+			filterEntry.SetSizeRequest (200, -1);
 
-			notebook.SizeAllocated += delegate {
-				RepositionFilter ();
-			};
+			var filterBar = new HBox (false, 6);
+			filterBar.PackStart (new Label (), true, true, 0);
+			filterBar.PackEnd (filterEntry, false, false, 6);
+			vbox93.PackStart (filterBar, false, false, 0);
+			((Box.BoxChild)(vbox93 [filterBar])).Position = 0;
+			((Box.BoxChild)(vbox93 [hbox65])).Position = 1;
+			filterBar.ShowAll ();
+
 			filterEntry.TextChanged += delegate {
 				tree.SetFilter (filterEntry.Text);
 				galleryTree.SetFilter (filterEntry.Text);
@@ -180,15 +178,6 @@ namespace Mono.Addins.Gui
 				addinTree.ExpandAll ();
 				galleryTreeView.ExpandAll ();
 			};
-			RepositionFilter ();
-		}
-		
-		void RepositionFilter ()
-		{
-			int w = filterEntry.SizeRequest ().Width;
-			int h = filterEntry.SizeRequest ().Height;
-			var alloc = notebook.Allocation;
-			filterEntry.SetAllocation (new Gdk.Rectangle (alloc.Left + alloc.Width - 1 - w, alloc.Y, w, h));
 		}
 		
 		protected override void Dispose (bool disposing)

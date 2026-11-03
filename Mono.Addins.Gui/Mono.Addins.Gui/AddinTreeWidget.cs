@@ -125,12 +125,16 @@ namespace Mono.Addins.Gui
 			col.PackStart (crtog, false);
 			
 			CellRendererPixbuf pr = new CellRendererPixbuf ();
+			pr.Ypad = 2;
 			col.PackStart (pr, false);
 			col.AddAttribute (pr, "pixbuf", ColImage);
 			col.AddAttribute (pr, "visible", ColShowImage);
 			
 			CellRendererText crt = new CellRendererText ();
-			crt.Ellipsize = Pango.EllipsizeMode.End;
+			crt.Ellipsize = Pango.EllipsizeMode.None;
+			crt.WrapMode = Pango.WrapMode.Word;
+			crt.MaxWidthChars = 45;
+			crt.Ypad = 2;
 			col.PackStart (crt, true);
 			
 			col.AddAttribute (crt, "markup", ColName);
@@ -141,8 +145,11 @@ namespace Mono.Addins.Gui
 			
 			col = new TreeViewColumn ();
 			col.Title = Catalog.GetString ("Version");
-			col.PackStart (crt, true);
-			col.AddAttribute (crt, "markup", ColVersion);
+			CellRendererText versionText = new CellRendererText ();
+			versionText.Ellipsize = Pango.EllipsizeMode.End;
+			versionText.Ypad = 2;
+			col.PackStart (versionText, true);
+			col.AddAttribute (versionText, "markup", ColVersion);
 			versionColumn = col;
 			treeView.AppendColumn (col);
 		}
